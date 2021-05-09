@@ -6,6 +6,12 @@
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  mounted () {
+    // This is for testing purposes at the moment
+    this.$store.dispatch('setTheme', {
+      theme: document.documentElement.classList.contains('dark') ? 'dark' : 'light'
+    })
+  }
 }
 </script>

@@ -1,15 +1,10 @@
 <template>
   <button
     class="rounded-full text-white font-bold transition transition-background-color duration-500 ease-out"
-    :class="{
-      'bg-blue-400 hover:bg-blue-500': variant === 'primary' && !outline,
-      'bg-transparent border': outline,
-      'border-2 border-blue-400 bg-blue-400 bg-opacity-0': variant === 'primary' && outline,
-      'hover:bg-opacity-10': outline,
-      'w-full': block,
-      'standard': 'py-3 px-6',
-      'py-1 px-4': size === 'sm'
-    }"
+    :class="[
+      style()
+    ]"
+    :disabled="disabled"
   >
     <slot></slot>
   </button>
@@ -24,6 +19,11 @@ export default {
       required: false,
       default: 'primary'
     },
+    disabled: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
     outline: {
       type: Boolean,
       required: false,
@@ -37,7 +37,43 @@ export default {
     size: {
       type: String,
       required: false,
-      default: 'standard'
+      default: 'lg'
+    }
+  },
+  methods: {
+    sizeStyle () {
+      switch (this.size) {
+        case 'lg':
+          return 'py-3 px-6'
+        case 'sm':
+          return 'py-2 px-4'
+        default:
+          return ''
+      }
+    },
+    disabledStyle () {
+      if (this.disabled) {
+        return 'pointer-events-none opacity-50'
+      }
+
+      return ''
+    },
+    variantStyle () {
+      switch (this.variant) {
+        case 'primary':
+          return `${this.outline ? 'hover:bg-opacity-10 text-blue-500 dark:text-white border-2 border-blue-400 bg-blue-400 bg-opacity-0' : 'bg-blue-400'} 
+                  ${!this.disabled ? 'hover:bg-blue-500' : ''}`
+        default:
+          return ''
+      }
+    },
+    style () {
+      let style = ''
+      style += ' ' + this.variantStyle()
+      style += ' ' + this.sizeStyle()
+      style += ' ' + this.disabledStyle()
+
+      return style
     }
   }
 }

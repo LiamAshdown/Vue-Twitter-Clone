@@ -1,33 +1,46 @@
 <template>
   <div
-    class="border border-gray-500 rounded border-opacity-50 px-2 focus-within:border-blue-400 relative"
-    :class="{
-      'w-full': block
-    }">
-      <span class="text-gray-500 absolute right-2 top-1 text-xs" v-if="max">{{ counter }} / {{ max }}</span>
-      <div class="pt-3">
-        <div
-          class="absolute top-0 h-full transition-all"
-          :class="{
-            'pt-4 text-gray-500 text-lg': !focus,
-            'pt-1 text-blue-400 text-sm': focus
-          }"
-        >
-          <span
-            class="text-opacity-50"
+    v-bind="$attrs"
+  >
+    <div
+      class="border-2 border-gray-500 rounded border-opacity-50 px-2 relative transition-all"
+      :class="{
+        'w-full': block,
+        'focus-within:border-blue-400': !validation.$error,
+        'border-red-500': validation.$error
+      }"
+      >
+        <span class="text-gray-500 absolute right-2 top-1 text-xs" v-if="max > 0">{{ counter }} / {{ max }}</span>
+        <div class="pt-3">
+          <div
+            class="absolute top-0 h-full transition-all"
+            :class="labelStyle"
           >
-            Name
-          </span>
+            <label
+              :label-for="id"
+              class="text-opacity-50"
+            >
+              {{ placeholder }}
+            </label>
+          </div>
         </div>
-      </div>
-      <input type="text"
-        ref="input"
-        class="bg-transparent py-3 text-white focus:outline-none"
-        :class="{
-          'w-full': block
-        }"
-        v-bind="$attrs"
-      />
+        <input
+          ref="input"
+          :type="type"
+          class="bg-transparent py-3 text-black dark:text-white focus:outline-none h-3.5 mt-3 mb-1"
+          :class="{
+            'w-full': block
+          }"
+          :value="modelValue"
+          @input="$emit('update:modelValue', $event.target.value)"
+          :maxlength="max"
+          :id="id"
+          :aria-label="id"
+          :aria-describedby="id + '-addon'"
+          @blur="validation.$touch"
+        />
+    </div>
+    <base-invalid-feedback :validation="validation"></base-invalid-feedback>
   </div>
 </template>
 
@@ -35,15 +48,37 @@
 export default {
   name: 'BaseInput',
   props: {
+    id: {
+      type: String,
+      required: false,
+      default: ''
+    },
+    modelValue: {
+      type: [Array, String, Number, undefined]
+    },
     block: {
       type: Boolean,
       required: false,
       default: false
     },
-    max: {
-      type: Number,
+    type: {
+      type: String,
       required: false,
-      default: 50
+      default: 'text'
+    },
+    placeholder: {
+      type: String,
+      required: false,
+      default: ''
+    },
+    max: {
+      type: String,
+      required: false,
+      default: '-1'
+    },
+    validation: {
+      required: false,
+      default: null
     }
   },
   data () {
@@ -52,18 +87,35 @@ export default {
       counter: 0
     }
   },
+  computed: {
+    labelStyle () {
+      if (!this.focus && !this.modelValue) {
+        return `pt-3 text-lg ${!this.validation.$error ? 'text-gray-500' : 'text-red-500'}`
+      }
+
+      if (this.focus) {
+        return `pt-2 text-sm ${!this.validation.$error ? 'text-blue-500' : 'text-red-500'}`
+      }
+
+      if (this.modelValue) {
+        return `pt-2 text-sm ${!this.validation.$error ? 'text-gray-500' : 'text-red-500'}`
+      }
+
+      return ''
+    }
+  },
   mounted () {
     this.$refs.input.addEventListener('focus', () => {
       this.focus = true
     })
 
     this.$refs.input.addEventListener('blur', event => {
-      this.focus = event.target.value.length > 0
+      this.focus = false
     })
 
     this.$refs.input.addEventListener('input', event => {
       const length = event.target.value.length
-      if (this.max && length > this.max) {
+      if (this.max > 0 && length > this.max) {
         this.counter = this.max
       } else {
         this.counter = length
