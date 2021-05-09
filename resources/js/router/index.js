@@ -1,18 +1,19 @@
 import { createWebHistory, createRouter } from 'vue-router'
 
 // Layouts
-import NotAuthenticatedLayout from '../components/layouts/NotAuthenticatedLayout'
+import NotAuthenticatedLayout from '../layouts/NotAuthenticatedLayout'
 
 // Pages
-import Home from '../components/pages/Home'
+import Home from '../pages/Home'
 
+// Misc
 import store from '../store/index'
 import middlewarePipeline from './middlewarePipeline'
 
 const routes = [
   {
-    path: '/login',
-    name: 'SignIn',
+    path: '/',
+    name: 'Home',
     component: Home,
     meta: {
       layout: NotAuthenticatedLayout
