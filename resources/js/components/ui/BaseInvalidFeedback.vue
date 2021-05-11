@@ -9,17 +9,26 @@ export default {
   name: 'BaseInvalidInput',
   props: {
     validation: {
-      type: Object,
-      required: true
+      required: false,
+      default: null
     }
   },
   computed: {
     message () {
+      if (!this.validation) {
+        return ''
+      }
+
+      if (this.validation.serverError && this.validation.$errors.length === 0) {
+        return this.validation.serverError
+      }
+
       if (this.validation.$errors.length === 0) {
         return ''
       }
 
       const error = this.validation.$errors[0]
+
       const errorMessage = messages[error.$validator]
 
       return errorMessage.replace(':attribute', error.$property)

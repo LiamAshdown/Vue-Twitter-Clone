@@ -1,27 +1,30 @@
 <template>
   <div class="fixed inset-0 w-full h-screen z-50 flex items-center justify-center bg-gray-400 bg-opacity-25" v-if="active">
-    <div class="w-full h-screen md:h-3/6 max-w-2xl bg-white dark:bg-black shadow-lg md:rounded-lg p-4">
+    <div class="w-full h-screen md:h-auto max-w-2xl bg-white dark:bg-black shadow-lg md:rounded-lg p-4">
       <div class="relative">
         <base-logo class="h-7 pr-5 relative inline-block left-2/4 transform -translate-x-2/4"></base-logo>
-        <base-button class="absolute right-1" size="sm" :disabled="test" @click="nextStep">Next</base-button>
       </div>
-      <div class="px-4 md:px-8 mt-8 mb-4" v-if="step === 0">
+      <div class="px-4 md:px-8 mt-8 mb-4">
         <p class="font-bold text-black dark:text-white text-2xl pb-6">Create your account</p>
-        <form>
-          <base-input id="name" class="mb-4" max="50" v-model="name" placeholder="Name" :validation="v$.name" block></base-input>
-          <base-input id="email" block v-model="email" placeholder="Email" :validation="v$.email"></base-input>
+        <form @submit.prevent="handleSubmit">
+          <base-input id="name" class="mb-4" max="50" v-model="form.name" placeholder="Name" :validation="v$.form.name" block></base-input>
+          <base-input id="email" class="mb-4" v-model="form.email" placeholder="Email" :validation="v$.form.email" block></base-input>
+          <base-input id="password" type="password" v-model="form.password" placeholder="Password" :validation="v$.form.password" block></base-input>
           <p class="text-black dark:text-white font-bold mt-10">Date of birth</p>
           <p class="text-gray-400">This will not be shown publicly. Confirm your own age, even if this account is for a business, a pet, or something else.</p>
           <div class="grid grid-cols-12 gap-3 mt-3">
             <div class="col-span-6">
-              <base-select v-model="month" placeholder="Month" :options="monthOptions" :validation="v$.name"></base-select>
+              <base-select v-model="form.month" placeholder="Month" :options="monthOptions" :validation="v$.form.month"></base-select>
             </div>
             <div class="col-span-3">
-              <base-select v-model="day" placeholder="Day" :options="dayOptions" :validation="v$.day"></base-select>
+              <base-select v-model="form.day" placeholder="Day" :options="dayOptions" :validation="v$.form.day"></base-select>
             </div>
             <div class="col-span-3">
-              <base-select v-model="year" placeholder="Year" :options="yearOptions" :validation="v$.year"></base-select>
+              <base-select v-model="form.year" placeholder="Year" :options="yearOptions" :validation="v$.form.year"></base-select>
             </div>
+          </div>
+          <div class="text-center mt-8">
+            <base-button :disabled="isDisabled" block>Sign Up</base-button>
           </div>
         </form>
       </div>
@@ -46,13 +49,14 @@ export default {
   },
   data () {
     return {
-      name: '',
-      email: '',
-      day: '',
-      month: '',
-      year: '',
-      step: 0,
-      errors: [],
+      form: {
+        name: '',
+        email: '',
+        password: '',
+        day: '',
+        month: '',
+        year: ''
+      },
       monthOptions: [
         { label: 'Janurary', value: '1' },
         { label: 'Feburary', value: '2' },
@@ -73,19 +77,21 @@ export default {
   },
   validations () {
     return {
-      name: { required },
-      email: { required, email },
-      day: { required },
-      month: { required },
-      year: { required }
+      form: {
+        name: { required },
+        email: { required, email },
+        password: { required },
+        day: { required },
+        month: { required },
+        year: { required }
+      }
     }
   },
   computed: {
     active () {
       return this.$store.getters['modals/active'] === this.id
     },
-    test () {
-      console.log(this.month)
+    isDisabled () {
       if (this.v$.$invalid) {
         return true
       }
@@ -94,7 +100,17 @@ export default {
     }
   },
   methods: {
-    nextStep () {
+    async handleSubmit () {
+      this.v$.$reset()
+      this.$serverValidation.reset(this.v$.form)
+
+      try {
+        await this.$store.dispatch('register', this.form)
+        this.$modal.close('sign-up-modal')
+        this.$router.push({ name: 'Home' })
+      } catch (err) {
+        this.$serverValidation.parse(err.response.data.errors, this.v$.form)
+      }
     }
   },
   mounted () {

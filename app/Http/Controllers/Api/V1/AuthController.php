@@ -51,9 +51,21 @@ class AuthController extends Controller
 	*/
 	public function register(Request $request, ProxyServiceInterface $proxyService) 
 	{
-		// return $proxyService->proxy('password', [
-		// 	'username' => $attributes['email'],
-		// 	'password' => $attributes['password']
-		// ]);
+		$attributes = $this->validate($request, [
+			'name'     => 'required|string',
+			'email'    => 'required|email|unique:users',
+			'password' => 'required',
+        ]);
+
+		$user = new User();
+		$user->name  	= $attributes['name'];
+		$user->email	= $attributes['email'];
+		$user->password	= $attributes['password'];
+		$user->save();
+
+		return $proxyService->proxy('password', [
+			'username' => $attributes['email'],
+			'password' => $attributes['password']
+		]);
 	}
 }

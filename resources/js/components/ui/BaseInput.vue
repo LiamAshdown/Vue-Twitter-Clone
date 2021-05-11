@@ -6,8 +6,8 @@
       class="border-2 border-gray-500 rounded border-opacity-50 px-2 relative transition-all"
       :class="{
         'w-full': block,
-        'focus-within:border-blue-400': !validation.$error,
-        'border-red-500': validation.$error
+        'focus-within:border-blue-400': !hasError(),
+        'border-red-500': hasError()
       }"
       >
         <span class="text-gray-500 absolute right-2 top-1 text-xs" v-if="max > 0">{{ counter }} / {{ max }}</span>
@@ -34,10 +34,13 @@
           :value="modelValue"
           @input="$emit('update:modelValue', $event.target.value)"
           :maxlength="max"
+          :autocapitalize="autocapitalize"
+          :autocomplete="autocomplete"
+          :autocorrect="autocorrect"
           :id="id"
           :aria-label="id"
           :aria-describedby="id + '-addon'"
-          @blur="validation.$touch"
+          @blur="validation ? validation.$touch : null"
         />
     </div>
     <base-invalid-feedback :validation="validation"></base-invalid-feedback>
@@ -76,6 +79,18 @@ export default {
       required: false,
       default: '-1'
     },
+    autocapitalize: {
+      type: String,
+      required: false
+    },
+    autocorrect: {
+      type: String,
+      required: false
+    },
+    autocomplete: {
+      type: String,
+      required: false
+    },
     validation: {
       required: false,
       default: null
@@ -90,18 +105,27 @@ export default {
   computed: {
     labelStyle () {
       if (!this.focus && !this.modelValue) {
-        return `pt-3 text-lg ${!this.validation.$error ? 'text-gray-500' : 'text-red-500'}`
+        return `pt-3 text-lg ${!this.hasError() ? 'text-gray-500' : 'text-red-500'}`
       }
 
       if (this.focus) {
-        return `pt-2 text-sm ${!this.validation.$error ? 'text-blue-500' : 'text-red-500'}`
+        return `pt-2 text-sm ${!this.hasError() ? 'text-blue-500' : 'text-red-500'}`
       }
 
       if (this.modelValue) {
-        return `pt-2 text-sm ${!this.validation.$error ? 'text-gray-500' : 'text-red-500'}`
+        return `pt-2 text-sm ${!this.hasError() ? 'text-gray-500' : 'text-red-500'}`
       }
 
       return ''
+    }
+  },
+  methods: {
+    hasError () {
+      if (this.validation) {
+        return this.validation.$error && this.validation.serverError
+      }
+
+      return false
     }
   },
   mounted () {

@@ -2,21 +2,47 @@ import { createWebHistory, createRouter } from 'vue-router'
 
 // Layouts
 import NotAuthenticatedLayout from '../layouts/NotAuthenticatedLayout'
+import AuthenticatedLayout from '../layouts/AuthenticatedLayout'
 
 // Pages
+import Splash from '../pages/Splash'
+import Login from '../pages/Login'
 import Home from '../pages/Home'
 
 // Misc
 import store from '../store/index'
+
+// Middleware
 import middlewarePipeline from './middlewarePipeline'
+import auth from './middleware/auth.js'
 
 const routes = [
   {
     path: '/',
+    name: 'Splash',
+    component: Splash,
+    meta: {
+      layout: NotAuthenticatedLayout
+    }
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login,
+    meta: {
+      layout: NotAuthenticatedLayout
+    }
+  },
+
+  {
+    path: '/home',
     name: 'Home',
     component: Home,
     meta: {
-      layout: NotAuthenticatedLayout
+      middleware: [
+        auth
+      ],
+      layout: AuthenticatedLayout
     }
   }
 ]

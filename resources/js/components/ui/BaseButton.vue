@@ -5,6 +5,7 @@
       style()
     ]"
     :disabled="disabled"
+    @click="onClick"
   >
     <slot></slot>
   </button>
@@ -33,6 +34,11 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+    to: {
+      type: Object,
+      required: false,
+      default: null
     },
     size: {
       type: String,
@@ -73,7 +79,18 @@ export default {
       style += ' ' + this.sizeStyle()
       style += ' ' + this.disabledStyle()
 
+      if (this.block) {
+        style += ' ' + 'w-full'
+      }
+
       return style
+    },
+    onClick (event) {
+      if (this.to) {
+        this.$router.push(this.to)
+      } else {
+        this.$emit('click', event)
+      }
     }
   }
 }

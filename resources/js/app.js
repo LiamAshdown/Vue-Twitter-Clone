@@ -5,6 +5,7 @@ import router from './router/index'
 import store from './store/index'
 
 import Modal from './plugins/modal'
+import ServerValidation from './plugins/serverValidation'
 
 // Tailwind CSS
 import '../css/index.css'
@@ -27,5 +28,6 @@ app.component('base-invalid-feedback', BaseInvalidFeedback)
 app.use(router)
 app.use(store)
 app.use(Modal)
+app.use(ServerValidation)
 
 app.mount('#app')
