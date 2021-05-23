@@ -69,7 +69,7 @@ export default {
     variantStyle () {
       switch (this.variant) {
         case 'primary':
-          return `${this.outline ? 'hover:bg-opacity-10 text-blue-500 dark:text-white border-2 border-blue-400 bg-blue-400 bg-opacity-0' : 'bg-blue-400'} 
+          return `${this.outline ? 'hover:bg-opacity-10 text-blue-500 border-2 border-blue-400 bg-blue-400 bg-opacity-0' : 'bg-blue-400'} 
                   ${!this.disabled ? 'hover:bg-blue-500' : ''}`
         default:
           return ''

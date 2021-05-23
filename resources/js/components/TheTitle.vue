@@ -1,17 +1,11 @@
 <template>
-  <div class="font-bold text-2xl text-black dark:text-white p-4 border-b border-gray-500">
-    {{ title }}
+  <div class="font-bold text-2xl text-black dark:text-white border-b border-gray-500">
+    <slot name="header"></slot>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'TheTitle',
-  props: {
-    title: {
-      type: String,
-      required: true
-    }
-  }
+  name: 'TheTitle'
 }
 </script>

@@ -1,6 +1,10 @@
 <template>
   <div>
-    <the-title title="Home"></the-title>
+    <the-title class="p-4">
+      <template v-slot:header>
+        Home
+      </template>
+    </the-title>
     <tweet-box></tweet-box>
   </div>
 </template>

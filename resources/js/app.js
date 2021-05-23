@@ -15,6 +15,8 @@ import BaseButton from './components/ui/BaseButton'
 import BaseInput from './components/ui/BaseInput'
 import BaseSelect from './components/ui/BaseSelect'
 import BaseLogo from './components/ui/BaseLogo'
+import TweetTab from './components/ui/tab/TweetTab'
+import TweetTabs from './components/ui/tab/TweetTabs'
 import BaseInvalidFeedback from './components/ui/BaseInvalidFeedback'
 
 const app = createApp(App)
@@ -23,6 +25,8 @@ app.component('base-button', BaseButton)
 app.component('base-input', BaseInput)
 app.component('base-select', BaseSelect)
 app.component('base-logo', BaseLogo)
+app.component('tweet-tab', TweetTab)
+app.component('tweet-tabs', TweetTabs)
 app.component('base-invalid-feedback', BaseInvalidFeedback)
 
 app.use(router)

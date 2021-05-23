@@ -53,12 +53,14 @@ class AuthController extends Controller
 	{
 		$attributes = $this->validate($request, [
 			'name'     => 'required|string',
+			'username' => 'required|string|unique:users',
 			'email'    => 'required|email|unique:users',
 			'password' => 'required',
         ]);
 
 		$user = new User();
 		$user->name  	= $attributes['name'];
+		$user->username = $attributes['username'];
 		$user->email	= $attributes['email'];
 		$user->password	= $attributes['password'];
 		$user->save();

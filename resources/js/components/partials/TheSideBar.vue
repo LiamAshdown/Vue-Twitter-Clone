@@ -90,7 +90,7 @@
           </div>
         </router-link>
         <router-link
-          :to="{ name: 'Login' }"
+          :to="{ name: 'Profile' }"
           v-slot="{ isActive }"
           class="text-right xl:text-left"
         >
