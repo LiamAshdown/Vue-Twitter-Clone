@@ -5,7 +5,7 @@
       v-for='(tab, index) in tabs'
       :key='tab.props.title'
       @click='selectTab(index)'
-      class="py-3 px-10 text-gray-400 cursor-pointer hover:bg-blue-500 hover:bg-opacity-10 hover:text-blue-400"
+      class="py-1 px-3 font-bold lg:py-3 lg:px-10 text-gray-400 cursor-pointer hover:bg-blue-500 hover:bg-opacity-10 hover:text-blue-400"
       >
       {{ tab.props.title }}
       </div>

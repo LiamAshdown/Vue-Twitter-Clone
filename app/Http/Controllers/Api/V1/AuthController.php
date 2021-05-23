@@ -36,10 +36,15 @@ class AuthController extends Controller
 	/**
 	* Logout
 	*
+	* @return \Illuminate\Http\Response
 	*/
 	public function logout()
 	{
-		auth()->user()->token()->revoke();
+		if (auth()->user()) {
+			auth()->user()->token()->revoke();
+		}
+
+		return response()->noContent();
 	}
 
 	/**

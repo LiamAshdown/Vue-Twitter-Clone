@@ -9,6 +9,7 @@ const apiClient = axios.create({
 apiClient.interceptors.request.use(async config => {
   const jwtToken = store.getters.accessToken
   const headers = jwtToken ? { Authorization: `Bearer ${jwtToken}` } : {}
+  console.log(headers)
 
   if (config.headers['Content-Type'] === 'application/x-www-form-urlencoded') {
     const formData = new FormData()
@@ -51,7 +52,7 @@ apiClient.interceptors.response.use((response) => {
       error.response.data === ' Unauthorized.')
   ) {
     // TODO; Toast Message
-    store.dispatch('logout')
+    // store.dispatch('logout')
   } else if (error.response.status === 500) {
     // TODO; Toast Message
   }

@@ -22,3 +22,11 @@ Route::group([
 	Route::post('register', 'AuthController@register');
 	Route::get('logout', 'AuthController@logout');
 });
+
+Route::group([ 
+	'prefix' => 'tweet',
+	'namespace' => 'V1',
+	'middleware' => ['auth:api']
+], function () {
+	Route::post('store', 'TweetController@store');
+});

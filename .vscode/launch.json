@@ -11,10 +11,7 @@
         "port": 9003,
         "ignore": [
             "**/vendor/**/*.php"
-        ],
-        "pathMappings": {
-                "/home/vagrant/Projects/Vue-Twitter-Clone": "${workspaceRoot}",
-            },
+        ]
         }
     ]
 }
