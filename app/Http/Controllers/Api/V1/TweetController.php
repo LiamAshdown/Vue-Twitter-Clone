@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\TweetResource;
+use App\Http\Resources\TweetResourceCollection;
 use App\Models\Tweet;
 use Illuminate\Http\Request;
 
@@ -10,7 +12,17 @@ use Illuminate\Http\Request;
  * Responsible for tweeting
  */
 class TweetController extends Controller
-{
+{   
+    /**
+     * Index
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        return new TweetResourceCollection();
+    }
+
     /**
      * Store Tweet
      *
@@ -30,6 +42,6 @@ class TweetController extends Controller
         $tweet->type = Tweet::TWEET_TYPE_PUBLIC;
         $tweet->save();
 
-        return response()->noContent();
+        return new TweetResource($tweet);
     }
 }

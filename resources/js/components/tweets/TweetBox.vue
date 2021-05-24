@@ -8,20 +8,18 @@
         <textarea class="w-full dark:bg-black dark:text-gray-300 text-1xl" ref="input" placeholder="Whats happening?" @input="debounceInput" v-model="tweet"></textarea>
         <div class="w-full border-t border-blue-400 text-right py-2" v-if="!loading">
           <div class="flex justify-end items-center gap-3">
-            <div class="border-r border-blue-400 pr-4">
-              <div>
-                <svg class="progress blue h-7" ref="progress" x="0px" y="0px" viewBox="0 0 80 80"
-                :class="{
-                  'orange': characterCounter > 235 && characterCounter < 255,
-                  'red' : characterCounter >= 265
-                }"
-                >
-                  <path class="track stroke-current text-gray-200 dark:text-gray-700" d="M5,40a35,35 0 1,0 70,0a35,35 0 1,0 -70,0"/>
-                  <path class="fill" d="M5,40a35,35 0 1,0 70,0a35,35 0 1,0 -70,0" />
-                </svg>
-              </div>
+            <div class="border-r border-blue-400 pr-4" v-if="canTweet">
+              <svg class="progress blue h-7" ref="progress" x="0px" y="0px" viewBox="0 0 80 80"
+              :class="{
+                'orange': characterCounter > 235 && characterCounter < 255,
+                'red' : characterCounter >= 265
+              }"
+              >
+                <path class="track stroke-current text-gray-200 dark:text-gray-700" d="M5,40a35,35 0 1,0 70,0a35,35 0 1,0 -70,0"/>
+                <path class="fill" d="M5,40a35,35 0 1,0 70,0a35,35 0 1,0 -70,0" />
+              </svg>
             </div>
-            <base-button size="md" :disabled="characterCounter > 255" @click="sendTweet">Tweet</base-button>
+            <base-button size="md" :disabled="!canTweet" @click="sendTweet">Tweet</base-button>
           </div>
         </div>
       </div>
@@ -32,7 +30,6 @@
 
 <script>
 import { debounce } from 'debounce'
-import api from '../../api/index'
 
 export default {
   name: 'TweetBox',
@@ -43,24 +40,29 @@ export default {
       loading: false
     }
   },
+  computed: {
+    canTweet () {
+      return this.tweet.trim().length > 0
+    }
+  },
   methods: {
     debounceInput: debounce(function (event) {
+      // TODO; Remove characterCounter and use tweet property
       this.characterCounter = event.target.value.length
       if (this.characterCounter <= 255) {
         this.$refs.progress.querySelector('.fill').setAttribute('style', 'stroke-dashoffset: ' + (((100 - this.characterCounter / 2.55) / 100) * 1) * -219.99078369140625)
       }
-    }, 300),
-    async sendTweet () {
+    }, 50),
+    sendTweet () {
       this.loading = true
-      try {
-        await api.tweet.store({
-          tweet: this.tweet
-        })
-      } catch (error) {
-        // Something went wrong...
-      } finally {
+
+      this.$store.dispatch('tweets/add', {
+        tweet: this.tweet
+      }).then(() => {
+        this.tweet = ''
+        this.characterCounter = 0
         this.loading = false
-      }
+      })
     }
   }
 }

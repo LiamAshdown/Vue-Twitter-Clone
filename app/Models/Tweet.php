@@ -15,4 +15,14 @@ class Tweet extends Model
     const TWEET_TYPE_PUBLIC = 'public';
     const TWEET_TYPE_FOLLOW = 'follow';
     const TWEET_TYPE_MENTIONED = 'mentioned';
+
+    /**
+     * Get User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

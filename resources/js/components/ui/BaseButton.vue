@@ -89,9 +89,8 @@ export default {
     },
     onClick (event) {
       if (this.to) {
+        event.stopPropagation()
         this.$router.push(this.to)
-      } else {
-        this.$emit('click', event)
       }
     }
   }

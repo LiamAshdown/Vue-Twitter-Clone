@@ -9,6 +9,7 @@ import Splash from '../pages/Splash'
 import Login from '../pages/Login'
 import Home from '../pages/Home'
 import Profile from '../pages/Profile'
+import User from '../pages/User'
 
 // Misc
 import store from '../store/index'
@@ -50,6 +51,17 @@ const routes = [
     path: '/profile',
     name: 'Profile',
     component: Profile,
+    meta: {
+      middleware: [
+        auth
+      ],
+      layout: AuthenticatedLayout
+    }
+  },
+  {
+    path: '/:username?',
+    name: 'User',
+    component: User,
     meta: {
       middleware: [
         auth

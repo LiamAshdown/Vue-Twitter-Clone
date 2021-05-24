@@ -9,7 +9,7 @@
         <form @submit.prevent="handleSubmit">
           <base-input id="name" class="mb-4" max="50" v-model="form.name" placeholder="Name" :validation="v$.form.name" block></base-input>
           <base-input id="username" class="mb-4" max="30" v-model="form.username" placeholder="Username" :validation="v$.form.username" block></base-input>
-          <base-input id="email" class="mb-4" v-model="form.email" placeholder="Email" :validation="v$.form.email" block></base-input>
+          <base-input id="email" class="mb-4" max="255" v-model="form.email" placeholder="Email" :validation="v$.form.email" block></base-input>
           <base-input id="password" type="password" v-model="form.password" placeholder="Password" :validation="v$.form.password" block></base-input>
           <p class="text-black dark:text-white font-bold mt-10">Date of birth</p>
           <p class="text-gray-400">This will not be shown publicly. Confirm your own age, even if this account is for a business, a pet, or something else.</p>
