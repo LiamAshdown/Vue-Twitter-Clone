@@ -30,3 +30,11 @@ Route::group([
 ], function () {
 	Route::post('store', 'TweetController@store');
 });
+
+Route::group([ 
+	'prefix' => 'user',
+	'namespace' => 'V1',
+	'middleware' => ['auth:api']
+], function () {
+	Route::get('show/{username}', 'UserController@show');
+});

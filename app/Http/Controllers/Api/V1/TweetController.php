@@ -20,7 +20,7 @@ class TweetController extends Controller
      */
     public function index()
     {
-        return new TweetResourceCollection();
+        return new TweetResourceCollection(); 
     }
 
     /**

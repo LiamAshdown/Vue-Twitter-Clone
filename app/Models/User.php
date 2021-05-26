@@ -68,4 +68,14 @@ class User extends Authenticatable
 
         $this->attributes['password'] = Hash::make($password);
     }
+
+    /**
+     * Get User Tweets
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function tweets()
+    {
+        return $this->hasMany(Tweet::class);
+    }
 }
