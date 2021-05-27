@@ -7,7 +7,7 @@ const apiClient = axios.create({
 })
 
 apiClient.interceptors.request.use(async config => {
-  const jwtToken = store.getters.accessToken
+  const jwtToken = store.getters['auth/accessToken']
   const headers = jwtToken ? { Authorization: `Bearer ${jwtToken}` } : {}
   console.log(headers)
 

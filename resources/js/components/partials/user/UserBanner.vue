@@ -1,9 +1,8 @@
 <template>
   <div>
-    <div class="bg-gray-700 h-32 md:h-52"></div>
+    <user-banner-cover></user-banner-cover>
     <div class="p-3">
-      <img alt="Liam Ashdown" class="rounded-full h-20 lg:h-40 relative -mt-20 inline-block" src="https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png">
-      <base-button class="float-right" size="md" outline>Set up profile</base-button>
+      <user-banner-avatar></user-banner-avatar>
       <div class="block text-left leading-3">
         <template v-if="user">
           <span class="text-gray-300 font-bold text-xl block">Liam Ashdown</span>
@@ -27,8 +26,15 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import UserBannerAvatar from './partials/UserBannerAvatar'
+import UserBannerCover from './partials/UserBannerCover'
+
 export default {
   name: 'ProfileBanner',
+  components: {
+    UserBannerAvatar,
+    UserBannerCover
+  },
   computed: {
     ...mapGetters({
       user: 'user/user'

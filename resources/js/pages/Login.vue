@@ -44,7 +44,7 @@ export default {
   methods: {
     async handleSubmit () {
       try {
-        await this.$store.dispatch('login', this.form)
+        await this.$store.dispatch('auth/login', this.form)
         this.$router.push({ name: 'Home' })
       } catch {
         this.error = true

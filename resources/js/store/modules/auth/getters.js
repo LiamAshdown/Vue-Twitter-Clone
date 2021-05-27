@@ -4,5 +4,8 @@ export default {
   },
   accessToken (state) {
     return state.accessToken
+  },
+  user (state) {
+    return state.profile
   }
 }

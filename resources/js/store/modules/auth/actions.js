@@ -5,7 +5,7 @@ export default {
   async login (context, payload) {
     let response = await api.auth.login(payload)
 
-    context.commit(SET_TOKEN_MUTATION, {
+    await context.commit(SET_TOKEN_MUTATION, {
       accessToken: response.accessToken,
       expiresIn: response.expiresIn,
       refreshToken: response.refreshToken,
