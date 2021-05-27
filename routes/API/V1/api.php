@@ -24,6 +24,14 @@ Route::group([
 });
 
 Route::group([ 
+	'prefix' => 'auth',
+	'namespace' => 'V1',
+	'middleware' => ['auth:api']
+], function () {
+	Route::get('profile', 'ProfileController@show');
+});
+
+Route::group([ 
 	'prefix' => 'tweet',
 	'namespace' => 'V1',
 	'middleware' => ['auth:api']

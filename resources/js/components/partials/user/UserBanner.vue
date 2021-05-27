@@ -7,7 +7,7 @@
       <div class="block text-left leading-3">
         <template v-if="user">
           <span class="text-gray-300 font-bold text-xl block">Liam Ashdown</span>
-          <small class="text-gray-500">@{{ user.username }}</small>
+          <small class="text-gray-500 text-lg">@{{ user.username }}</small>
         </template>
         <template v-else>
           <span class="text-gray-300 font-bold text-xl block">@{{ $route.params.username }}</span>

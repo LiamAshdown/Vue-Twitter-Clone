@@ -8,7 +8,10 @@ export default {
       accessToken: null,
       expiresIn: null,
       refreshToken: null,
-      authenticated: false
+      authenticated: false,
+      profile: {
+        username: ''
+      }
     }
   },
   mutations,

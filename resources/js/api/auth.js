@@ -5,7 +5,8 @@ const PREFIX = 'auth'
 const URL = {
   LOGIN: `${PREFIX}/login`,
   LOGOUT: `${PREFIX}/logout`,
-  REGISTER: `${PREFIX}/register`
+  REGISTER: `${PREFIX}/register`,
+  PROFILE: `${PREFIX}/profile`
 }
 
 export default {
@@ -16,8 +17,8 @@ export default {
   async logout () {
     await apiClient.get(URL.LOGOUT)
   },
-  async register (payload) {
-    const response = await apiClient.post(URL.REGISTER, payload).then(response => response.data)
+  async profile () {
+    const response = await apiClient.get(URL.PROFILE).then(response => response.data.data)
     return response
   }
 }

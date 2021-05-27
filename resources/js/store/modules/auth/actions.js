@@ -1,9 +1,9 @@
-import { SET_TOKEN_MUTATION } from '../../mutation-types'
+import { SET_PROFILE_MUTATION, SET_TOKEN_MUTATION } from '../../mutation-types'
 import api from '../../../api/index'
 
 export default {
   async login (context, payload) {
-    const response = await api.auth.login(payload)
+    let response = await api.auth.login(payload)
 
     context.commit(SET_TOKEN_MUTATION, {
       accessToken: response.accessToken,
@@ -12,7 +12,8 @@ export default {
       authenticated: true
     })
 
-    await context.dispatch('getProfile')
+    response = await api.auth.profile()
+    context.commit(SET_PROFILE_MUTATION, response)
   },
   async logout (context) {
     await api.auth.logout()

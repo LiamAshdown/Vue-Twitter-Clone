@@ -6,7 +6,7 @@
     <tweet-tab title="Likes"><p class="text-white">ffdffff</p></tweet-tab>
   </tweet-tabs>
   <div class="text-center" v-else>
-    <p class="text-gray-300 text-xl font-bold"> This account doesn't exist</p>
+    <p class="text-black dark:text-white text-xl font-bold mb-2"> This account doesn't exist</p>
     <small class="text-gray-400 text-sm font-normal">Try searching for another.</small>
   </div>
 </template>

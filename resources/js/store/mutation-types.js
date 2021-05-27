@@ -8,3 +8,6 @@ export const ADD_TWEET_MUTATION = 'ADD_TWEET_MUTATION'
 
 // User
 export const SET_USER_MUTATION = 'SET_USER_MUTATION'
+
+// Profile
+export const SET_PROFILE_MUTATION = 'SET_PROFILE_MUTATION'

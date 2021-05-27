@@ -40,6 +40,7 @@ export default {
 
     const user = computed(() => store.getters['user/user'])
 
+    // Simuate longer loading time
     await waitFor(1000)
 
     return {

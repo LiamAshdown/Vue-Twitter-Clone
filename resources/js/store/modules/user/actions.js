@@ -12,5 +12,7 @@ export default {
     } finally {
       context.commit(SET_USER_MUTATION, response)
     }
+
+    context.dispatch('profile')
   }
 }
