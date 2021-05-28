@@ -1,7 +1,7 @@
 <template>
   <teleport to="body">
     <div class="fixed inset-0 w-full h-screen z-50 flex items-center justify-center bg-gray-400 bg-opacity-25" v-if="active">
-      <div class="w-full h-screen md:h-auto max-w-2xl bg-white dark:bg-black shadow-lg md:rounded-lg p-4">
+      <div class="w-full h-screen md:h-auto max-w-2xl bg-white dark:bg-black shadow-lg md:rounded-lg p-4" @click="close">
         <div class="hover:bg-blue-400 hover:bg-opacity-10 rounded-full w-10 p-2 cursor-pointer">
           <svg viewBox="0 0 24 24" aria-hidden="true" class="h-full fill-current text-blue-400"><g><path d="M13.414 12l5.793-5.793c.39-.39.39-1.023 0-1.414s-1.023-.39-1.414 0L12 10.586 6.207 4.793c-.39-.39-1.023-.39-1.414 0s-.39 1.023 0 1.414L10.586 12l-5.793 5.793c-.39.39-.39 1.023 0 1.414.195.195.45.293.707.293s.512-.098.707-.293L12 13.414l5.793 5.793c.195.195.45.293.707.293s.512-.098.707-.293c.39-.39.39-1.023 0-1.414L13.414 12z"></path></g></svg>
         </div>
@@ -37,6 +37,9 @@ export default {
     }
   },
   methods: {
+    close () {
+      this.$modal.close('follow-sign-up-modal')
+    },
     signUp () {
       // Close modal
       this.$modal.close('follow-sign-up-modal')
