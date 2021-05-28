@@ -14,11 +14,17 @@ class UserResource extends JsonResource
      */
     public function toArray($request)
     {
-        return [
+
+        $return = [
             'id' => $this->id,
             'username' => $this->username,
             'tweets' => $this->tweets,
+            'following' => $this->follwers,
             'joined_at' => $this->created_at
         ];
+
+        if (auth()->check()) {
+            $return['following_user'] = auth()->user()->followingUser($this->id);
+        }
     }
 }

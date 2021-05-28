@@ -41,8 +41,15 @@ Route::group([
 
 Route::group([ 
 	'prefix' => 'user',
-	'namespace' => 'V1',
-	'middleware' => ['auth:api']
+	'namespace' => 'V1'
 ], function () {
+	Route::group([ 
+		'prefix' => 'user',
+		'namespace' => 'V1',
+		'middleware' => ['auth:api']
+	], function () {
+		Route::get('follow', 'UserController@follow');
+	});
+
 	Route::get('show/{username}', 'UserController@show');
 });

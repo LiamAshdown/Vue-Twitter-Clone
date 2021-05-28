@@ -1,0 +1,16 @@
+[33mcommit 8ba3d56441bf22433148e16b9b52832c6b0d7fe7[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: Liam Ashdown <liam-ashdown@outlook.com>
+Date:   Thu May 27 23:32:22 2021 +0100
+
+    Split user page into components
+
+M	resources/js/api/client.js
+M	resources/js/components/partials/user/UserBanner.vue
+M	resources/js/components/partials/user/UserTabs.vue
+M	resources/js/components/partials/user/partials/UserBannerAvatar.vue
+A	resources/js/components/partials/user/partials/UserBannerCover.vue
+M	resources/js/pages/Login.vue
+M	resources/js/router/middleware/auth.js
+M	resources/js/store/modules/auth/actions.js
+M	resources/js/store/modules/auth/getters.js
+M	resources/js/store/modules/auth/index.js

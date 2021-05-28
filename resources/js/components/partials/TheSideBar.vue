@@ -9,6 +9,7 @@
           :to="{ name: 'Home' }"
           v-slot="{ isActive }"
           class="text-right xl:text-left"
+          v-if="authenticated"
         >
           <div class="inline-flex items-center xl:gap-4 py-3 xl:px-2 hover:bg-blue-400 hover:bg-opacity-10 hover:text-blue-400 rounded-full" :class="[isActive && 'text-blue-400']">
             <div class="fill-current">
@@ -37,6 +38,7 @@
           :to="{ name: 'Login' }"
           v-slot="{ isActive }"
           class="text-right xl:text-left"
+          v-if="authenticated"
         >
           <div class="inline-flex items-center xl:gap-4 py-3 xl:px-2 hover:bg-blue-400 hover:bg-opacity-10 hover:text-blue-400 rounded-full" :class="[isActive && 'text-blue-400']">
             <div class="fill-current">
@@ -51,6 +53,7 @@
           :to="{ name: 'Login' }"
           v-slot="{ isActive }"
           class="text-right xl:text-left"
+          v-if="authenticated"
         >
           <div class="inline-flex items-center xl:gap-4 py-3 xl:px-2 hover:bg-blue-400 hover:bg-opacity-10 hover:text-blue-400 rounded-full" :class="[isActive && 'text-blue-400']">
             <div class="fill-current">
@@ -65,6 +68,7 @@
           :to="{ name: 'Login' }"
           v-slot="{ isActive }"
           class="text-right xl:text-left"
+          v-if="authenticated"
         >
           <div class="inline-flex items-center xl:gap-4 py-3 xl:px-2 hover:bg-blue-400 hover:bg-opacity-10 hover:text-blue-400 rounded-full" :class="[isActive && 'text-blue-400']">
             <div class="fill-current">
@@ -79,6 +83,7 @@
           :to="{ name: 'Login' }"
           v-slot="{ isActive }"
           class="text-right xl:text-left"
+          v-if="authenticated"
         >
           <div class="inline-flex items-center xl:gap-4 py-3 xl:px-2 hover:bg-blue-400 hover:bg-opacity-10 hover:text-blue-400 rounded-full" :class="[isActive && 'text-blue-400']">
             <div class="fill-current">
@@ -93,6 +98,7 @@
           :to="{ name: 'Profile' }"
           v-slot="{ isActive }"
           class="text-right xl:text-left"
+          v-if="authenticated"
         >
           <div class="inline-flex items-center xl:gap-4 py-3 xl:px-2 hover:bg-blue-400 hover:bg-opacity-10 hover:text-blue-400 rounded-full" :class="[isActive && 'text-blue-400']">
             <div class="fill-current">
@@ -109,7 +115,13 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
-  name: 'TheSideBar'
+  name: 'TheSideBar',
+  computed: {
+    ...mapGetters({
+      authenticated: 'auth/isAuthenticated'
+    })
+  }
 }
 </script>

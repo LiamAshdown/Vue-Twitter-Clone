@@ -78,4 +78,25 @@ class User extends Authenticatable
     {
         return $this->hasMany(Tweet::class);
     }
+
+    /**
+     * Get Followers
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function followers()
+    {
+        return $this->hasMany(User::class, 'following_user_id');
+    }
+
+    /**
+     * Check if Auth user is following specified user
+     * TODO; Can this be done better?
+     *
+     * @return bool
+     */
+    public function followingUser($id)
+    {
+        return FollowUser::where('user_id', auth()->id())->where('following_user_id', $id)->exists();
+    }
 }

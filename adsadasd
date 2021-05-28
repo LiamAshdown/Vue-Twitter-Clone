@@ -1,0 +1,92 @@
+[33mcommit 8ba3d56441bf22433148e16b9b52832c6b0d7fe7[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: Liam Ashdown <liam-ashdown@outlook.com>
+Date:   Thu May 27 23:32:22 2021 +0100
+
+    Split user page into components
+
+[33mcommit 95e4e8e54e0d27fc8c22b21ae65b490d16792190[m
+Author: Liam Ashdown <liam-ashdown@outlook.com>
+Date:   Thu May 27 22:57:00 2021 +0100
+
+    Add profile API
+
+[33mcommit 3e77cbb0ea26c8df14563d2e28008d12667a8020[m
+Author: Liam Ashdown <liam-ashdown@outlook.com>
+Date:   Thu May 27 00:03:45 2021 +0100
+
+    Implement supsense when loading user
+
+[33mcommit 68553a40f41896347c96c9ab409289338705c9df[m
+Author: Liam Ashdown <liam-ashdown@outlook.com>
+Date:   Mon May 24 23:55:40 2021 +0100
+
+    Work on user components
+
+[33mcommit 7e011c2363fdad2007d0269beaf958a4a2a40912[m
+Author: Liam Ashdown <liam-ashdown@outlook.com>
+Date:   Mon May 24 00:33:02 2021 +0100
+
+    Add tweetcontroller api
+
+[33mcommit ecd872b534522119ca55d8fc627a872345f13388[m
+Author: Liam Ashdown <liam-ashdown@outlook.com>
+Date:   Sun May 23 20:24:00 2021 +0100
+
+    Delete .env.save file
+
+[33mcommit b7901542c98c19a2b8159ef728232afc996b0e16[m
+Author: Liam Ashdown <liam-ashdown@outlook.com>
+Date:   Sun May 23 20:18:50 2021 +0100
+
+    Work on profile page
+
+[33mcommit 8505dc3931b648aad20d8b83c3f6f370242f4212[m
+Author: Liam Ashdown <liam-ashdown@outlook.com>
+Date:   Wed May 19 23:50:34 2021 +0100
+
+    Start implementing the home page
+
+[33mcommit 7404b575837b7447185374a57f66b60fa01a3006[m
+Author: Quadral <liam-ashdown@outlook.com>
+Date:   Tue May 11 18:15:45 2021 +0100
+
+    Add authentication middleware
+
+[33mcommit 71e873187e89c4b3b73a07eae754cdc4431d8180[m
+Author: Quadral <liam-ashdown@outlook.com>
+Date:   Sun May 9 23:10:59 2021 +0100
+
+    Add basic implementation of validation
+    
+    Add better style handling for base buttons
+    Add functionality for dark/light theme
+
+[33mcommit d7e04e14a58f6f6aab1eded0d491310435da032c[m
+Author: Quadral <liam-ashdown@outlook.com>
+Date:   Sun May 9 08:41:31 2021 +0100
+
+    Add Passport and proxy
+    
+    Add Splash Page
+    Add WIP Sign Up Modal
+    Add UI base elements
+
+[33mcommit 6e761bf7d8e65c0bbf70287c4c7b59730e8bc11d[m
+Author: LiamAshdown <liam-ashdown@outlook.com>
+Date:   Sat May 8 17:59:56 2021 +0100
+
+    Add eslinting
+
+[33mcommit 38f7712647febcc66ca4f88b86f6b0e05bbe8058[m
+Author: LiamAshdown <liam-ashdown@outlook.com>
+Date:   Sat May 8 17:24:15 2021 +0100
+
+    Add Vue/Router/Vuex
+    
+    Add Tailwind CSS
+
+[33mcommit acc192febd1bb1721c19d62f38470ae78c6008e7[m
+Author: LiamAshdown <liam-ashdown@outlook.com>
+Date:   Sat May 8 15:42:21 2021 +0100
+
+    Add Laravel

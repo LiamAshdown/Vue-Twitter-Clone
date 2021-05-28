@@ -1,5 +1,5 @@
 import api from '../../../api/index'
-import { SET_USER_MUTATION } from '../../mutation-types'
+import { SET_FOLLOW_USER_MUTATION, SET_USER_MUTATION } from '../../mutation-types'
 
 export default {
   async user (context, payload) {
@@ -14,5 +14,13 @@ export default {
     }
 
     context.dispatch('profile')
+  },
+  async follow (context, payload) {
+    try {
+      await api.user.follow(this.getters.user.id)
+
+      context.commit(SET_FOLLOW_USER_MUTATION, payload)
+    } catch {
+    }
   }
 }

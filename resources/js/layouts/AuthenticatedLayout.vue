@@ -32,7 +32,6 @@
 <script>
 import TheSideBar from '../components/partials/TheSideBar'
 import TheBottomBar from '../components/partials/TheBottomBar'
-
 export default {
   name: 'AuthenticatedLayout',
   components: {
