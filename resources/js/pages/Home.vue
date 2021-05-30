@@ -18,6 +18,9 @@ export default {
   components: {
     TheTitle,
     TweetBox
+  },
+  mounted () {
+    this.$store.dispatch('tweets/index')
   }
 }
 </script>

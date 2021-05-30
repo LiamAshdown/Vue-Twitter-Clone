@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\TweetResource;
 use App\Http\Resources\TweetResourceCollection;
+use App\Models\FollowUser;
 use App\Models\Tweet;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -21,7 +22,11 @@ class TweetController extends Controller
      */
     public function index()
     {
-        return new TweetResourceCollection(); 
+        // TODO; This needs to be in laravel relationship
+        $followerIds = FollowUser::with('tweets')->where('user_id', auth()->id())->pluck('following_user_id');
+        $tweets = Tweet::whereIn('user_id', $followerIds)->get();
+
+        return new TweetResourceCollection($tweets);
     }
 
     /**
