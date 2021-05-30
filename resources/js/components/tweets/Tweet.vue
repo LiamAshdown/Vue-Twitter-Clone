@@ -6,7 +6,7 @@
     <div class="w-96">
       <div class="flex">
         <span class="text-gray-400 mr-1">Liam Ashdown</span>
-        <div class="text-gray-500 whitespace-nowrap overflow-hidden overflow-ellipsis w-24">@LiamAshdown1</div>
+        <div class="text-gray-500 whitespace-nowrap overflow-hidden overflow-ellipsis w-24 md:w-auto">@LiamAshdown1</div>
         <span class="text-gray-500">- 40m</span>
       </div>
       <p class="text-gray-300">Test</p>

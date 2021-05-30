@@ -8,7 +8,6 @@ import AuthenticatedLayout from '../layouts/AuthenticatedLayout'
 import Splash from '../pages/Splash'
 import Login from '../pages/Login'
 import Home from '../pages/Home'
-import Profile from '../pages/Profile'
 import User from '../pages/User'
 
 // Misc
@@ -40,17 +39,6 @@ const routes = [
     path: '/home',
     name: 'Home',
     component: Home,
-    meta: {
-      middleware: [
-        auth
-      ],
-      layout: AuthenticatedLayout
-    }
-  },
-  {
-    path: '/profile',
-    name: 'Profile',
-    component: Profile,
     meta: {
       middleware: [
         auth

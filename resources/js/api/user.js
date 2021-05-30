@@ -13,6 +13,6 @@ export default {
     return response
   },
   async follow (payload) {
-    await apiClient.post(URL.FOLLOW, payload)
+    return await apiClient.post(URL.FOLLOW, payload)
   }
 }

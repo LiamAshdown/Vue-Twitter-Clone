@@ -7,6 +7,9 @@ module.exports = {
         spacing: 'padding-top',
         height: 'height'
       },
+      maxHeight: {
+        'header-bottom': 'calc(100vh - 8rem)'
+      },
       backgroundImage: () => ({
         splash: "url('/img/splash_background.png')"
       })

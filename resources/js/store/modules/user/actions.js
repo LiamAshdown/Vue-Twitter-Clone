@@ -15,11 +15,16 @@ export default {
 
     context.dispatch('profile')
   },
-  async follow (context, payload) {
+  async follow (context) {
     try {
-      await api.user.follow(this.getters.user.id)
+      console.log()
+      api.user.follow({
+        id: context.getters.user.id
+      })
 
-      context.commit(SET_FOLLOW_USER_MUTATION, payload)
+      context.commit(SET_FOLLOW_USER_MUTATION, {
+        id: context.getters.user.id
+      })
     } catch {
     }
   }

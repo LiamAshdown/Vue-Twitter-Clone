@@ -88,19 +88,18 @@
           <div class="inline-flex items-center xl:gap-4 py-3 xl:px-2 hover:bg-blue-400 hover:bg-opacity-10 hover:text-blue-400 rounded-full" :class="[isActive && 'text-blue-400']">
             <div class="fill-current">
               <svg class="h-7" viewBox="0 0 24 24" aria-hidden="true"><g><path d="M19.75 22H4.25C3.01 22 2 20.99 2 19.75V4.25C2 3.01 3.01 2 4.25 2h15.5C20.99 2 22 3.01 22 4.25v15.5c0 1.24-1.01 2.25-2.25 2.25zM4.25 3.5c-.414 0-.75.337-.75.75v15.5c0 .413.336.75.75.75h15.5c.414 0 .75-.337.75-.75V4.25c0-.413-.336-.75-.75-.75H4.25z"></path><path d="M17 8.64H7c-.414 0-.75-.337-.75-.75s.336-.75.75-.75h10c.414 0 .75.335.75.75s-.336.75-.75.75zm0 4.11H7c-.414 0-.75-.336-.75-.75s.336-.75.75-.75h10c.414 0 .75.336.75.75s-.336.75-.75.75zm-5 4.11H7c-.414 0-.75-.335-.75-.75s.336-.75.75-.75h5c.414 0 .75.337.75.75s-.336.75-.75.75z"></path></g></svg>
-              </div>
-              <div class="pr-4">
-                <span class="font-bold text-xl hidden xl:block">Lists</span>
-              </div>
+            </div>
+            <div class="pr-4">
+              <span class="font-bold text-xl hidden xl:block">Lists</span>
+            </div>
           </div>
         </router-link>
-        <router-link
-          :to="{ name: 'Profile' }"
-          v-slot="{ isActive }"
-          class="text-right xl:text-left"
+        <div
+          @click="profile"
+          class="text-right xl:text-left cursor-pointer"
           v-if="authenticated"
         >
-          <div class="inline-flex items-center xl:gap-4 py-3 xl:px-2 hover:bg-blue-400 hover:bg-opacity-10 hover:text-blue-400 rounded-full" :class="[isActive && 'text-blue-400']">
+          <div class="inline-flex items-center xl:gap-4 py-3 xl:px-2 hover:bg-blue-400 hover:bg-opacity-10 hover:text-blue-400 rounded-full" :class="{'text-blue-400': $route.params.username === user.username}">
             <div class="fill-current">
               <svg class="h-7" viewBox="0 0 24 24" aria-hidden="true"><g><path d="M12 11.816c1.355 0 2.872-.15 3.84-1.256.814-.93 1.078-2.368.806-4.392-.38-2.825-2.117-4.512-4.646-4.512S7.734 3.343 7.354 6.17c-.272 2.022-.008 3.46.806 4.39.968 1.107 2.485 1.256 3.84 1.256zM8.84 6.368c.162-1.2.787-3.212 3.16-3.212s2.998 2.013 3.16 3.212c.207 1.55.057 2.627-.45 3.205-.455.52-1.266.743-2.71.743s-2.255-.223-2.71-.743c-.507-.578-.657-1.656-.45-3.205zm11.44 12.868c-.877-3.526-4.282-5.99-8.28-5.99s-7.403 2.464-8.28 5.99c-.172.692-.028 1.4.395 1.94.408.52 1.04.82 1.733.82h12.304c.693 0 1.325-.3 1.733-.82.424-.54.567-1.247.394-1.94zm-1.576 1.016c-.126.16-.316.246-.552.246H5.848c-.235 0-.426-.085-.552-.246-.137-.174-.18-.412-.12-.654.71-2.855 3.517-4.85 6.824-4.85s6.114 1.994 6.824 4.85c.06.242.017.48-.12.654z"></path></g></svg>
               </div>
@@ -108,7 +107,7 @@
                 <span class="font-bold text-xl hidden xl:block">Profile</span>
               </div>
           </div>
-        </router-link>
+        </div>
       </nav>
     </div>
   </div>
@@ -116,12 +115,19 @@
 
 <script>
 import { mapGetters } from 'vuex'
+
 export default {
   name: 'TheSideBar',
   computed: {
     ...mapGetters({
-      authenticated: 'auth/isAuthenticated'
+      authenticated: 'auth/isAuthenticated',
+      user: 'auth/user'
     })
+  },
+  methods: {
+    profile () {
+      this.$router.push({ name: 'User', params: { username: this.user.username } })
+    }
   }
 }
 </script>

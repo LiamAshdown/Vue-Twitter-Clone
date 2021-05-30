@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use App\Models\FollowUser;
 use App\Models\User;
+use App\Rules\FollowingUser;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -53,7 +54,7 @@ class UserController extends Controller
     public function follow(Request $request)
     {
         $attributes = $this->validate($request, [
-            'id' => 'required|exists:users'
+            'id' => ['required', 'exists:users', new FollowingUser ]
         ]);
 
         $followUser = new FollowUser();

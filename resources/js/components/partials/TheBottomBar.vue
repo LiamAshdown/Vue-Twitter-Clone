@@ -1,5 +1,5 @@
 <template>
-  <div class="absolute bottom-0 w-full">
+  <div class="absolute bottom-0 w-full h-16 bg-white dark:bg-black">
     <nav class="flex justify-center border-t border-gray-700 px-2 text-black dark:text-white gap-12">
       <router-link
         :to="{ name: 'Home' }"

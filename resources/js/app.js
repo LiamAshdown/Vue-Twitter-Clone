@@ -19,6 +19,9 @@ import TweetTab from './components/ui/tab/TweetTab'
 import TweetTabs from './components/ui/tab/TweetTabs'
 import BaseInvalidFeedback from './components/ui/BaseInvalidFeedback'
 
+// Custom Icons
+import LoadingIcon from './components/icons/LoadingIcon'
+
 const app = createApp(App)
 
 app.component('base-button', BaseButton)
@@ -28,6 +31,9 @@ app.component('base-logo', BaseLogo)
 app.component('tweet-tab', TweetTab)
 app.component('tweet-tabs', TweetTabs)
 app.component('base-invalid-feedback', BaseInvalidFeedback)
+
+// Custom Icons
+app.component('loading-icon', LoadingIcon)
 
 app.use(router)
 app.use(store)

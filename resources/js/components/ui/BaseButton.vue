@@ -69,8 +69,11 @@ export default {
     variantStyle () {
       switch (this.variant) {
         case 'primary':
-          return `${this.outline ? 'hover:bg-opacity-10 text-blue-500 border-2 border-blue-400 bg-blue-400 bg-opacity-0' : 'bg-blue-400'} 
-                  ${!this.disabled ? 'hover:bg-blue-500' : ''}`
+          return `${this.outline ? 'btn-primary--outline' : 'btn-primary'} 
+                  ${this.disabled ? 'btn-primary--disabled' : ''}`
+        case 'white':
+          return `${this.outline ? 'btn-white--outline' : 'btn-white'} 
+                  ${!this.disabled ? (this.outline ? 'hover:bg-opacity-25' : 'hover:bg-opacity-75') : ''}`
         default:
           return ''
       }
@@ -96,3 +99,27 @@ export default {
   }
 }
 </script>
+
+<style>
+.btn-primary {
+  @apply bg-blue-400;
+}
+.btn-primary--outline {
+  @apply text-blue-500 border-2 border-blue-400 bg-blue-400 bg-opacity-0 hover:bg-opacity-10 hover:bg-blue-500;
+}
+.btn-primary--disabled {
+  @apply hover:bg-current;
+}
+
+.btn-white {
+  @apply bg-white text-blue-400;
+}
+.btn-white--outline {
+  @apply hover:bg-white text-white bg-blue-400 border-2 border-white;
+}
+
+/** Custom overrides */
+.btn-follow-hover {
+  @apply hover:bg-red-500
+}
+</style>

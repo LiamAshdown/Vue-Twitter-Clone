@@ -19,12 +19,14 @@ class UserResource extends JsonResource
             'id' => $this->id,
             'username' => $this->username,
             'tweets' => $this->tweets,
-            'following' => $this->follwers,
+            'followers' => $this->follwers,
             'joined_at' => $this->created_at
         ];
 
-        if (auth()->check()) {
-            $return['following_user'] = auth()->user()->followingUser($this->id);
+        if (auth()->user()) {
+            $return['following'] = auth()->user()->followingUser($this->id);
         }
+
+        return $return;
     }
 }
