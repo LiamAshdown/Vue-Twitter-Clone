@@ -16,6 +16,7 @@ export default {
     context.dispatch('profile')
   },
   async follow (context) {
+    // Optimistic update
     try {
       context.commit(SET_FOLLOW_USER_MUTATION)
 
@@ -27,6 +28,7 @@ export default {
     }
   },
   async unfollow (context) {
+    // Optimistic update
     try {
       context.commit(SET_UNFOLLOW_USER_MUTATION)
 
