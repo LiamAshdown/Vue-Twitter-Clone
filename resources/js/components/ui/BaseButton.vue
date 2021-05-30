@@ -74,6 +74,8 @@ export default {
         case 'white':
           return `${this.outline ? 'btn-white--outline' : 'btn-white'} 
                   ${!this.disabled ? (this.outline ? 'hover:bg-opacity-25' : 'hover:bg-opacity-75') : ''}`
+        case 'dark':
+          return 'btn-dark'
         default:
           return ''
       }
@@ -116,6 +118,10 @@ export default {
 }
 .btn-white--outline {
   @apply hover:bg-white text-white bg-blue-400 border-2 border-white;
+}
+
+.btn-dark {
+  @apply bg-gray-800 text-white hover:bg-opacity-75;
 }
 
 /** Custom overrides */

@@ -18,19 +18,23 @@
 
     <follow-sign-up-modal></follow-sign-up-modal>
     <sign-up-modal></sign-up-modal>
+    <unfollow-modal></unfollow-modal>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+
 import FollowSignUpModal from '../../../modals/FollowSignUpModal'
 import SignUpModal from '../../../modals/SignUpModal'
+import UnfollowModal from '../../../modals/UnfollowModal'
 
 export default {
   name: 'UserBannerAvatar',
   components: {
     FollowSignUpModal,
-    SignUpModal
+    SignUpModal,
+    UnfollowModal
   },
   data () {
     return {
@@ -56,7 +60,7 @@ export default {
       }
     },
     unfollow () {
-      this.$store.dispatch('user/unfollow')
+      this.$modal.show('unfollow-modal')
     },
     unfollowHover (type) {
       if (type === 'hover') {
