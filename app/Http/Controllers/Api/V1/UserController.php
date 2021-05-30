@@ -48,19 +48,39 @@ class UserController extends Controller
     /**
      * Follow User
      *
-     * @param Request $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function follow(Request $request)
     {
         $attributes = $this->validate($request, [
-            'id' => ['required', 'exists:users', new FollowingUser ]
+            'id' => ['required', 'exists:users', new FollowingUser('not')]
         ]);
 
+        // TODO; Move this into user model?
         $followUser = new FollowUser();
         $followUser->following_user_id = $attributes['id'];
         $followUser->user_id = auth()->id();
         $followUser->save();
+
+        return response()->noContent();
+    }
+
+    /**
+     * Unfollow User
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function unfollow(Request $request)
+    {
+        $attributes = $this->validate($request, [
+            'id' => ['required', 'exists:users', new FollowingUser('is')]
+        ]);
+
+        // TODO; Move this into user model?
+        $followUser = FollowUser::where('user_id', auth()->id())->where('following_user_id', $attributes['id'])->first();
+        $followUser->delete();
 
         return response()->noContent();
     }

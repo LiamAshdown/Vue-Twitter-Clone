@@ -8,13 +8,20 @@ use Illuminate\Contracts\Validation\Rule;
 class FollowingUser implements Rule
 {
     /**
+     * Is/Not following user
+     *
+     * @var string
+     */
+    private $type;
+
+    /**
      * Create a new rule instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($type = 'not')
     {
-        //
+        $this->type = $type;
     }
 
     /**
@@ -26,7 +33,8 @@ class FollowingUser implements Rule
      */
     public function passes($attribute, $value)
     {
-        return !auth()->user()->followingUser($value);
+        $result = auth()->user()->followingUser($value);
+        return $this->type === 'is' ? !!$result : !$result;
     }
 
     /**
@@ -36,6 +44,6 @@ class FollowingUser implements Rule
      */
     public function message()
     {
-        return 'Already following user';
+        return $this->type === 'is' ? 'Must be following user' : 'Already following user';
     }
 }

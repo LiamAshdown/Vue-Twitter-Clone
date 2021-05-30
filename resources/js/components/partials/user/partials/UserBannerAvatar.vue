@@ -9,7 +9,7 @@
         <base-button class="float-right w-24" size="md" outline @click="follow" v-if="!user.following">Follow</base-button>
         <base-button
         class="float-right btn-follow-hover w-24" size="md"
-        @mouseover="unfollowHover('hover')" @mouseleave="unfollowHover('leave')" v-show="user.following">{{ followingText }}</base-button>
+        @mouseover="unfollowHover('hover')" @mouseleave="unfollowHover('leave')" @click="unfollow" v-show="user.following">{{ followingText }}</base-button>
       </template>
     </template>
     <template v-else>
@@ -54,6 +54,9 @@ export default {
       } else {
         this.$modal.show('follow-sign-up-modal')
       }
+    },
+    unfollow () {
+      this.$store.dispatch('user/unfollow')
     },
     unfollowHover (type) {
       if (type === 'hover') {

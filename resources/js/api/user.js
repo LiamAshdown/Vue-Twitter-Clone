@@ -4,7 +4,8 @@ const PREFIX = 'user'
 
 const URL = {
   SHOW: `${PREFIX}/show`,
-  FOLLOW: `${PREFIX}/follow`
+  FOLLOW: `${PREFIX}/follow`,
+  UNFOLLOW: `${PREFIX}/unfollow`
 }
 
 export default {
@@ -13,6 +14,9 @@ export default {
     return response
   },
   async follow (payload) {
-    return await apiClient.post(URL.FOLLOW, payload)
+    await apiClient.post(URL.FOLLOW, payload)
+  },
+  async unfollow (payload) {
+    await apiClient.post(URL.UNFOLLOW, payload)
   }
 }

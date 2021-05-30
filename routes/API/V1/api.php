@@ -47,6 +47,7 @@ Route::group([
 		'middleware' => ['auth:api']
 	], function () {
 		Route::post('follow', 'UserController@follow');
+		Route::post('unfollow', 'UserController@unfollow');
 	});
 
 	Route::get('show/{username}', 'UserController@show');
