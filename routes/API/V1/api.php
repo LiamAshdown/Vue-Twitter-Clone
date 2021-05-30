@@ -34,9 +34,14 @@ Route::group([
 Route::group([ 
 	'prefix' => 'tweet',
 	'namespace' => 'V1',
-	'middleware' => ['auth:api']
 ], function () {
-	Route::post('store', 'TweetController@store');
+	Route::group([ 
+		'middleware' => ['auth:api']
+	], function () {
+		Route::post('store', 'TweetController@store');
+	});
+
+	Route::get('user-tweets/{id}', 'TweetController@tweets');
 });
 
 Route::group([ 

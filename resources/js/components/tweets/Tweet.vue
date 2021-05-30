@@ -5,11 +5,10 @@
     </div>
     <div class="w-96">
       <div class="flex">
-        <span class="text-gray-400 mr-1">Liam Ashdown</span>
-        <div class="text-gray-500 whitespace-nowrap overflow-hidden overflow-ellipsis w-24 md:w-auto">@LiamAshdown1</div>
-        <span class="text-gray-500">- 40m</span>
+        <span class="text-gray-400 mr-1">{{ tweet.user.name }}</span>
+        <div class="text-gray-500 whitespace-nowrap overflow-hidden overflow-ellipsis w-24 md:w-auto">@{{ tweet.user.username }} <span class="text-gray-500">- {{ tweet.createdAtReadable }}</span></div>
       </div>
-      <p class="text-gray-300">Test</p>
+      <p class="text-gray-300">{{ tweet.tweet }}</p>
       <div class="flex justify-between">
         <div class="p-1 md:p-3 flex items-center md:items-end rounded-full hover:bg-blue-400 hover:bg-opacity-10">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 hover:text-blue-400 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -43,6 +42,12 @@
 
 <script>
 export default {
-  name: 'Tweet'
+  name: 'Tweet',
+  props: {
+    tweet: {
+      type: Object,
+      required: true
+    }
+  }
 }
 </script>

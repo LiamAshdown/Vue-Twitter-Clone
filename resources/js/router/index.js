@@ -46,6 +46,7 @@ const routes = [
       layout: AuthenticatedLayout
     }
   },
+
   {
     path: '/:username?',
     name: 'User',

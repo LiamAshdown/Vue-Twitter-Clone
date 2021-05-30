@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\TweetResource;
 use App\Http\Resources\TweetResourceCollection;
 use App\Models\Tweet;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 /**
@@ -43,5 +44,17 @@ class TweetController extends Controller
         $tweet->save();
 
         return new TweetResource($tweet);
+    }
+
+    /**
+     * Get User Tweets
+     *
+     * @param Request $request
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function tweets(Request $request, $id)
+    {
+        return new TweetResourceCollection(User::findOrFail($id)->tweets);
     }
 }
