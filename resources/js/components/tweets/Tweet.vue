@@ -1,5 +1,5 @@
 <template>
-  <div class="flex p-2 md:py-3 md:px-5">
+  <div class="flex p-2 md:py-3 md:px-5 border-b border-gray-500">
     <div>
       <img alt="Liam Ashdown" class="rounded-full h-12 mr-14 lg:mr-4" src="https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png">
     </div>

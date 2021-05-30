@@ -9,7 +9,6 @@
     <tweet
       v-for="tweet in tweets"
       :key="tweet.id"
-      class="border-b border-gray-500"
       :tweet="tweet"
     ></tweet>
   </div>
