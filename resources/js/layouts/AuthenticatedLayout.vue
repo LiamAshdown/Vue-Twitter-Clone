@@ -8,7 +8,7 @@
               <the-side-bar></the-side-bar>
             </div>
             <div class="col-span-9 xl:col-span-5 border-r border-gray-700">
-              <main class="h-screen flex-grow">
+              <main class="flex-grow">
                 <slot></slot>
               </main>
             </div>

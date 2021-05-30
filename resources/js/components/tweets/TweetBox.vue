@@ -1,14 +1,14 @@
 <template>
-  <div>
-    <div class="flex gap-4 p-4">
+  <div class="transition-all">
+    <div class="flex gap-4 p-4 transition-all">
       <div>
         <img alt="Liam Ashdown" class="rounded-full" src="https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png">
       </div>
       <div class="w-full">
         <textarea class="w-full dark:bg-black dark:text-gray-300 text-1xl" ref="input" placeholder="Whats happening?" @input="debounceInput" v-model="tweet"></textarea>
-        <div class="w-full border-t border-blue-400 text-right py-2" v-if="!loading">
+        <div class="w-full border-t border-blue-400 text-right py-2 overflow-hidden">
           <div class="flex justify-end items-center gap-3">
-            <div class="border-r border-blue-400 pr-4" v-if="canTweet">
+            <div class="border-r border-blue-400 pr-4 overflow-hidden" v-if="canTweet">
               <svg class="progress blue h-7" ref="progress" x="0px" y="0px" viewBox="0 0 80 80"
               :class="{
                 'orange': characterCounter > 235 && characterCounter < 255,

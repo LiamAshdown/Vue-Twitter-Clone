@@ -14,7 +14,7 @@ export default {
     return response
   },
   async store (payload) {
-    const response = await apiClient.post(URL.STORE, payload).then(response => response.data)
+    const response = await apiClient.post(URL.STORE, payload).then(response => response.data.data)
     return response
   },
   async userTweets (id) {

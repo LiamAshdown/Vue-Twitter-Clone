@@ -24,7 +24,7 @@ class TweetController extends Controller
     {
         // TODO; This needs to be in laravel relationship
         $followerIds = FollowUser::with('tweets')->where('user_id', auth()->id())->pluck('following_user_id');
-        $tweets = Tweet::whereIn('user_id', $followerIds)->get();
+        $tweets = Tweet::whereIn('user_id', $followerIds)->orWhere('user_id', auth()->id())->latest()->get();
 
         return new TweetResourceCollection($tweets);
     }

@@ -1,5 +1,5 @@
 export default {
-  isDark (state) {
-    return state.theme === 'dark'
+  tweets (state) {
+    return state.tweets
   }
 }

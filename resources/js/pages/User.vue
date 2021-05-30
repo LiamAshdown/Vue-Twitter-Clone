@@ -8,7 +8,7 @@
         <user-header></user-header>
       </template>
     </the-title>
-    <div class="overflow-y-auto max-h-header-bottom md:h-full">
+    <div class="overflow-y-auto md:overflow-visible max-h-header-bottom md:h-full">
       <user-banner></user-banner>
       <user-tabs></user-tabs>
     </div>
