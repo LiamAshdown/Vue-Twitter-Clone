@@ -14,6 +14,10 @@ export default {
     const response = await apiClient.post(URL.LOGIN, payload).then(response => response.data)
     return response
   },
+  async register (payload) {
+    const response = await apiClient.post(URL.REGISTER, payload).then(response => response.data)
+    return response
+  },
   async logout () {
     await apiClient.get(URL.LOGOUT)
   },

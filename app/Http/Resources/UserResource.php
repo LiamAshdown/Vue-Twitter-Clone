@@ -18,8 +18,9 @@ class UserResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'username' => $this->username,
+            'total_tweets' => $this->tweets->count(),
             'followers' => $this->follwers,
-            'joined_at' => $this->created_at
+            'joined_at' => $this->created_at->format('d F Y')
         ];
 
         if (auth()->user()) {

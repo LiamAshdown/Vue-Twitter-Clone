@@ -42,7 +42,7 @@ export default {
   },
   computed: {
     canTweet () {
-      return this.tweet.trim().length > 0
+      return this.tweet.trim().length > 0 && this.tweet.trim().length <= 255
     }
   },
   methods: {

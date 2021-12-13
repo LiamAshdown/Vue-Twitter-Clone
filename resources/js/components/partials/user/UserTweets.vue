@@ -36,13 +36,14 @@ export default {
 
     const getTweets = async () => {
       tweets.value = await api.tweet.userTweets(user.value.id)
-      loading.valuie = false
+      loading.value = false
     }
 
     onMounted(getTweets)
 
     return {
       user,
+      loading,
       tweets
     }
   }

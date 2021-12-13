@@ -5,7 +5,7 @@
     </div>
     <div class="leading-5">
       <span class="block text-gray-200 text-lg">{{ user ? user.username : 'P' }}</span>
-      <small class="text-gray-400 text-sm font-normal" v-if="user">Tweets 0</small>
+      <small class="text-gray-400 text-sm font-normal" v-if="user">Tweets {{ user ? user.totalTweets : 0 }}</small>
     </div>
   </div>
 </template>

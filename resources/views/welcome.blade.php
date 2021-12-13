@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Twitter Clone</title>
     </head>
-    <body class="h-full">
+    <body class="h-auto">
         <div id="app">
         </div>
 

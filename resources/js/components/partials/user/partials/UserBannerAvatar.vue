@@ -3,7 +3,7 @@
     <template v-if="user">
       <img alt="Liam Ashdown" class="rounded-full h-20 lg:h-40 relative -mt-20 inline-block" src="https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png">
       <template v-if="isAuthUser">
-        <base-button class="float-right" size="md" outline @click="onAction">Set Up Profile</base-button>
+        <base-button class="float-right" size="md" outline>Set Up Profile</base-button>
       </template>
       <template v-else>
         <base-button class="float-right w-24" size="md" outline @click="follow" v-if="!user.following">Follow</base-button>
@@ -13,7 +13,7 @@
       </template>
     </template>
     <template v-else>
-      <div alt="Unknown" class="rounded-full h-20 w-40 lg:h-40 relative -mt-20 border-4 border-black bg-gray-900"></div>
+      <div alt="Unknown" class="rounded-full h-20 w-20 md:h-40 md:w-40 relative -mt-20 border-4 border-black bg-gray-900"></div>
     </template>
 
     <follow-sign-up-modal></follow-sign-up-modal>

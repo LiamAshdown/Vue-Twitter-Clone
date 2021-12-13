@@ -19,6 +19,8 @@ class TweetResource extends JsonResource
             'id' => $this->id,
             'tweet' => $this->tweet,
             'type' => $this->type,
+            'likes' => $this->likes->count(),
+            'liked' => $this->liked(),
             'user' => new UserResource($this->user), //< This is heavy on performance, ideally have user on top level then tweets
             'created_at_readable' => $this->created_at->diffForHumans()
         ];

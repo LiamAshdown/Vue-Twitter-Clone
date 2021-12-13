@@ -109,10 +109,11 @@ export default {
       this.$serverValidation.reset(this.v$.form)
 
       try {
-        await this.$store.dispatch('register', this.form)
+        await this.$store.dispatch('auth/register', this.form)
         this.$modal.close('sign-up-modal')
         this.$router.push({ name: 'Home' })
       } catch (err) {
+        console.log(err)
         this.$serverValidation.parse(err.response.data.errors, this.v$.form)
       }
     }

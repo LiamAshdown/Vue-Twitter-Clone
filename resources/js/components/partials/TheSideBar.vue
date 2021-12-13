@@ -1,6 +1,6 @@
 <template>
   <div class="h-full xl:pr-3">
-    <div class="h-full md:float-right p-3 hidden md:block">
+    <div class="fixed h-full md:float-right p-3 hidden md:block md:ml-28 xl:ml-28">
       <nav class="flex flex-col text-black dark:text-white gap-3 float-right xl:float-none" role="navigation">
         <div>
           <base-logo class="h-6 xl:ml-2"></base-logo>

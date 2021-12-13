@@ -11,6 +11,8 @@ apiClient.interceptors.request.use(async config => {
   const headers = jwtToken ? { Authorization: `Bearer ${jwtToken}` } : {}
   console.log(headers)
 
+  config.params = { XDEBUG_SESSION_START: 'PHPSTORM' }
+
   if (config.headers['Content-Type'] === 'application/x-www-form-urlencoded') {
     const formData = new FormData()
 

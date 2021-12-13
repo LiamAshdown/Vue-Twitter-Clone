@@ -25,4 +25,24 @@ class Tweet extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * Get Tweet Replies
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function likes() 
+    {
+        return $this->hasMany(LikedTweets::class);
+    }
+
+    /**
+     * Auth User Liked
+     *
+     * @return mixed
+     */
+    public function liked()
+    {
+        return $this->hasMany(LikedTweets::class)->where('user_id', auth()->id())->exists();
+    }
 }

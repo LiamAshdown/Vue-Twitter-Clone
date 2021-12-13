@@ -62,4 +62,38 @@ class TweetController extends Controller
     {
         return new TweetResourceCollection(User::findOrFail($id)->tweets);
     }
+
+    /**
+     * Like Tweet
+     *
+     * @param Request $request
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function like(Request $request, $id)
+    {
+        $tweet = Tweet::findOrFail($id);
+
+        $tweet->likes()->create([
+            'user_id' => auth()->id()
+        ]);
+
+        return response()->noContent();
+    }
+
+    /**
+     * Unlike Tweet
+     *
+     * @param Request $request
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function unlike(Request $request, $id)
+    {
+        $tweet = Tweet::findOrFail($id);
+
+        $tweet->likes()->where('user_id', auth()->id())->delete();
+
+        return response()->noContent();
+    }
 }

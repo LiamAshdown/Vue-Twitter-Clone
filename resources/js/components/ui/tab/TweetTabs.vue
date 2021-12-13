@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav class="flex justify-between text-white border-b border-gray-500">
+    <nav class="flex justify-between text-white border-b border-gray-500 px-12 lg:px-0">
       <div
       v-for='(tab, index) in tabs'
       :key='tab.props.title'

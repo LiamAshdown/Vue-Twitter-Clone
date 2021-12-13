@@ -4,6 +4,8 @@ import App from './App.vue'
 import router from './router/index'
 import store from './store/index'
 
+import api from '@/api'
+
 import Modal from './plugins/modal'
 import ServerValidation from './plugins/serverValidation'
 
@@ -37,6 +39,9 @@ app.component('loading-icon', LoadingIcon)
 
 app.use(router)
 app.use(store)
+
+app.config.globalProperties.$api = api
+
 app.use(Modal)
 app.use(ServerValidation)
 

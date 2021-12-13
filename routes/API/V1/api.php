@@ -39,6 +39,8 @@ Route::group([
 		'middleware' => ['auth:api']
 	], function () {
 		Route::post('store', 'TweetController@store');
+		Route::post('like/{id}', 'TweetController@like');
+		Route::post('unlike/{id}', 'TweetController@unlike');
 		Route::get('index', 'TweetController@index');
 	});
 

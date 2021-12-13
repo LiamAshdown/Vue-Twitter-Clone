@@ -27,10 +27,7 @@
         <input
           ref="input"
           :type="type"
-          class="bg-transparent py-3 text-black dark:text-white focus:outline-none h-3.5 mt-3 mb-1"
-          :class="{
-            'w-full': block
-          }"
+          class="bg-transparent py-3 text-black dark:text-white focus:outline-none h-3.5 mt-3 mb-1 w-full"
           :value="modelValue"
           @input="$emit('update:modelValue', $event.target.value)"
           :maxlength="max"

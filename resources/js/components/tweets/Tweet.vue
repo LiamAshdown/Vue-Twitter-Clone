@@ -1,11 +1,11 @@
 <template>
   <div class="flex p-2 md:py-3 md:px-5 border-b border-gray-500">
-    <div>
-      <img alt="Liam Ashdown" class="rounded-full h-12 mr-14 lg:mr-4" src="https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png">
+    <div class="mr-6 h-12 w-12 lg:mr-4">
+      <img alt="Liam Ashdown" class="rounded-full" src="https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png">
     </div>
     <div class="w-96">
       <div class="flex">
-        <span class="text-gray-400 mr-1">{{ tweet.user.name }}</span>
+        <span class="text-gray-300 mr-1 font-bold cursor-pointer" @click="goToUser">{{ tweet.user.name }}</span>
         <div class="text-gray-500 whitespace-nowrap overflow-hidden overflow-ellipsis w-24 md:w-auto">@{{ tweet.user.username }} <span class="text-gray-500">- {{ tweet.createdAtReadable }}</span></div>
       </div>
       <p class="text-gray-300">{{ tweet.tweet }}</p>
@@ -20,10 +20,22 @@
             <path fillRule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clipRule="evenodd" />
           </svg>
         </div>
-        <div class="p-3 flex items-center rounded-full hover:bg-red-500 hover:bg-opacity-20">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400 hover:text-red-500 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-          </svg>
+        <div class="flex items-center">
+          <div
+            class="p-2 rounded-full hover:bg-red-500 hover:bg-opacity-20"
+            @click="like"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+            :class="[
+              {'fill-current text-red-500': tweet.liked},
+              {'hover:text-red-500': likeHover}
+            ]"
+            @mouseover="hover('like')"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+            </svg>
+          </div>
+          <small class="text-gray-400 absolute ml-10" v-if="tweet.likes">{{ tweet.likes }}</small>
         </div>
         <div class="p-3 flex items-center rounded-full hover:bg-blue-400 hover:bg-opacity-10">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400 hover:text-blue-400 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -43,10 +55,39 @@
 <script>
 export default {
   name: 'Tweet',
+  data () {
+    return {
+      likeHover: false
+    }
+  },
   props: {
     tweet: {
       type: Object,
       required: true
+    }
+  },
+  methods: {
+    like () {
+      this.likeHover = !this.tweet.liked
+
+      if (this.tweet.liked) {
+        this.$store.dispatch('tweets/unlike', this.tweet.id)
+      } else {
+        this.$store.dispatch('tweets/like', this.tweet.id)
+      }
+    },
+    hover (type) {
+      if (type === 'like') {
+        this.likeHover = true
+      }
+    },
+    goToUser () {
+      this.$router.push({
+        name: 'User',
+        params: {
+          username: this.tweet.user.username
+        }
+      })
     }
   }
 }
